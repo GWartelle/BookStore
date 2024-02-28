@@ -14,28 +14,28 @@ app.use(express.json());
 // app.use(cors());
 // Option 2: Allow custom origins
 app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'],
-    })
+  cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
 );
 
-app.get('/', (req, res) => {
-    console.log(req)
-    return res.status(234).send('Welcome to MERN Stack Tutorial')
+app.get("/", (req, res) => {
+  console.log(req);
+  return res.status(234).send("Welcome to MERN Stack Tutorial");
 });
 
-app.use('/books', booksRoute);
+app.use("/books", booksRoute);
 
 mongoose
-.connect(mongoDRURL)
-    .then(() => {
-        console.log('App connected to database');
-        app.listen(PORT, () => {
-            console.log(`App is listening to port: ${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.log(error);
+  .connect(mongoDRURL)
+  .then(() => {
+    console.log("App connected to database");
+    app.listen(PORT, () => {
+      console.log(`App is listening to port: ${PORT}`);
     });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
